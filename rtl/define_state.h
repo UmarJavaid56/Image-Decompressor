@@ -1,0 +1,158 @@
+`ifndef DEFINE_STATE
+
+	// for top state - we have more states than needed
+	typedef enum logic [1:0]{
+		S_IDLE,
+		S_UART_RX,
+		S_M1,
+		S_M2} top_state_type;
+
+typedef enum logic [5:0]{
+	S_IDLE_M1,
+	S_LEAD_IN1,
+	S_LEAD_IN2,
+	S_LEAD_IN3,
+	S_LEAD_IN4,
+	S_LEAD_IN5,
+	S_LEAD_IN6,
+	S_LEAD_IN7,
+	S_LEAD_IN8,
+	S_LEAD_IN9,
+	S_LEAD_IN10,
+	S_LEAD_IN11,
+	S_LEAD_IN12,
+	S_LEAD_IN13,
+	S_LEAD_IN14,
+	S_COMMON_CASE0,
+	S_COMMON_CASE1,
+	S_COMMON_CASE2,
+	S_COMMON_CASE3,
+	S_COMMON_CASE4,
+	S_COMMON_CASE5,
+	S_COMMON_CASE6,
+	S_COMMON_CASE7,
+	S_LEAD_OUT1,
+	S_LEAD_OUT2,
+	S_LEAD_OUT3,
+	S_DONE} m1_state_type;
+
+typedef enum logic [3:0]{
+	S_IDLE_M2,
+	S_FS,
+	S_CT,
+	S_MS1,
+	S_MS2,
+	S_CS,
+	S_WS,
+	S_DONE_M2} m2_top_state_type;
+
+typedef enum logic [5:0]{
+	S_IDLE_M2_T_reset,
+	S_IDLE_M2_T,
+	S_LEAD_IN0_T,
+	S_LEAD_IN1_T,
+	S_LEAD_IN2_T,
+	S_LEAD_IN3_T,
+	S_LEAD_IN4_T,
+	S_COMMON_CASE0_T,
+	S_COMMON_CASE1_T,
+	S_COMMON_CASE2_T,
+	S_COMMON_CASE3_T,
+	S_COMMON_CASE4_T,
+	S_COMMON_CASE5_T,
+	S_COMMON_CASE6_T,
+	S_COMMON_CASE7_T,
+	S_COMMON_CASE8_T,
+	S_LEAD_OUT1_T,
+	S_LEAD_OUT2_T,
+	S_LEAD_OUT3_T,
+	S_DONE_T} m2CalcT_state_type;
+
+	typedef enum logic [5:0]{
+	S_IDLE_M2_S_reset,
+	S_IDLE_M2_S,
+	S_LEAD_IN0_S,
+	S_LEAD_IN1_S,
+	S_LEAD_IN2_S,
+	S_LEAD_IN3_S,
+	S_LEAD_IN4_S,
+	S_COMMON_CASE0_S,
+	S_COMMON_CASE1_S,
+	S_COMMON_CASE2_S,
+	S_COMMON_CASE3_S,
+	S_COMMON_CASE4_S,
+	S_COMMON_CASE5_S,
+	S_COMMON_CASE6_S,
+	S_COMMON_CASE7_S,
+	S_COMMON_CASE8_S,
+	S_LEAD_OUT1_S,
+	S_LEAD_OUT2_S,
+	S_LEAD_OUT3_S,
+	S_DONE_S} m2CalcS_state_type;
+
+
+
+
+typedef enum logic [2:0]{
+	S_CC1,
+	S_CC2,
+	S_CC5,
+	S_CC6,
+	S_CC7} m1_state_calculation;
+
+typedef enum logic [3:0]{
+	S_IDLE_FETCH,
+	S_LEADIN1_FETCH,
+	S_LEADIN2_FETCH,
+	S_CC1_FETCH,
+	S_LEADOUT_FETCH,
+	S_DONE_FETCH} m2_fetch_state;
+
+typedef enum logic [3:0]{
+	S_IDLE_WS,
+	S_LEADIN1_WS,
+	S_LEADIN2_WS,
+	S_CC1_WS,
+	S_CC2_WS,
+	S_DONE_WS} m2_WS_state;
+
+typedef enum logic [1:0]{
+	S_RXC_IDLE,
+	S_RXC_SYNC,
+	S_RXC_ASSEMBLE_DATA,
+	S_RXC_STOP_BIT} RX_Controller_state_type;
+
+typedef enum logic [2:0]{
+	S_US_IDLE,
+	S_US_STRIP_FILE_HEADER_1,
+	S_US_STRIP_FILE_HEADER_2,
+	S_US_START_FIRST_BYTE_RECEIVE,
+	S_US_WRITE_FIRST_BYTE,
+	S_US_START_SECOND_BYTE_RECEIVE,
+	S_US_WRITE_SECOND_BYTE} UART_SRAM_state_type;
+
+typedef enum logic [3:0]{
+	S_VS_WAIT_NEW_PIXEL_ROW,
+	S_VS_NEW_PIXEL_ROW_DELAY_1,
+	S_VS_NEW_PIXEL_ROW_DELAY_2,
+	S_VS_NEW_PIXEL_ROW_DELAY_3,
+	S_VS_NEW_PIXEL_ROW_DELAY_4,
+	S_VS_NEW_PIXEL_ROW_DELAY_5,
+	S_VS_FETCH_PIXEL_DATA_0,
+	S_VS_FETCH_PIXEL_DATA_1,
+	S_VS_FETCH_PIXEL_DATA_2,
+	S_VS_FETCH_PIXEL_DATA_3} VGA_SRAM_state_type;
+
+parameter
+	VIEW_AREA_LEFT = 160,
+	VIEW_AREA_RIGHT = 480,
+	VIEW_AREA_TOP = 120,
+	VIEW_AREA_BOTTOM = 360,
+	Y_BASE_ADDRESS = 18'd0,
+	U_BASE_ADDRESS = 18'd38400,
+	V_BASE_ADDRESS = 18'd57600,
+	RGB_BASE_ADDRESS = 18'd146944,
+	DP_S_BASE_ADDRESS = 64;
+
+`define DEFINE_STATE 1
+`endif
